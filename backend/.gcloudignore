@@ -1,0 +1,12 @@
+.gcloudignore
+.git
+.venv/
+.data/
+.env
+.env.*
+__pycache__/
+**/__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.log
+tests/
