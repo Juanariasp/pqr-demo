@@ -24,9 +24,7 @@ if sdk.exists():
     os.environ["CLOUDSDK_PYTHON"] = str(root / "backend/.venv/Scripts/python.exe")
 else:
     sdk = "gcloud"
-token = subprocess.check_output(
-    [str(sdk), "auth", "print-access-token"], text=True
-).strip()
+token = subprocess.check_output([str(sdk), "auth", "print-access-token"], text=True).strip()
 client = httpx.Client(
     headers={"Authorization": f"Bearer {token}", "x-goog-user-project": args.project},
     timeout=60,
@@ -69,11 +67,7 @@ apps = checked(client.get(f"{base}/{project}/webApps")).get("apps", [])
 web = next((app for app in apps if app.get("displayName") == "Nexo PQR web"), None)
 if not web:
     web = operation(
-        checked(
-            client.post(
-                f"{base}/{project}/webApps", json={"displayName": "Nexo PQR web"}
-            )
-        )
+        checked(client.post(f"{base}/{project}/webApps", json={"displayName": "Nexo PQR web"}))
     )
 config = checked(client.get(f"{base}/{project}/webApps/{web['appId']}/config"))
 output = {

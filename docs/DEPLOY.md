@@ -23,7 +23,14 @@ Invoke-Gcloud services enable firebase.googleapis.com identitytoolkit.googleapis
 
 El script agrega Firebase al proyecto de datos sin facturación, registra la aplicación web y habilita correo/contraseña. Primero acepta los términos desde Firebase Console si es la primera vez que usas el producto. Si Firebase pide inicializar Authentication, abre su consola, selecciona el proyecto y usa Authentication → Get started. No es necesario activar métodos sociales ni actualizar a Identity Platform. Luego repite el script. Si una pantalla propone Blaze, detente: se seleccionó un proyecto con facturación, no el proyecto Spark previsto.
 
-Publica `firestore.rules` desde Firebase Console → Firestore → Rules para denegar acceso directo de clientes. Esta aplicación utiliza IAM desde el backend; no depende de reglas que permitan leer o escribir desde el navegador. El bucket regular de Cloud Storage se crea con prevención de acceso público y acceso uniforme.
+Publica `firestore.rules` para denegar acceso directo de clientes:
+
+```powershell
+Invoke-Gcloud services enable firebaserules.googleapis.com --project=pqr-demo-data-53950210571
+& .\backend\.venv\Scripts\python.exe scripts\publish-firestore-rules.py
+```
+
+Esta aplicación utiliza IAM desde el backend; no depende de reglas que permitan leer o escribir desde el navegador. El bucket regular de Cloud Storage se crea con prevención de acceso público y acceso uniforme. Las reglas ya fueron publicadas para la entrega actual.
 
 ## Gemini gratuito y secretos
 

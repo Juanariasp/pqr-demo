@@ -26,6 +26,8 @@ paragraphs = [
     "Los nombres, referencias, importes y hechos de este documento son ejemplos de demostración.",
 ]
 doc = Document()
+for border in list(doc.styles.element.xpath(".//w:pBdr")):
+    border.getparent().remove(border)
 section = doc.sections[0]
 section.top_margin = section.bottom_margin = Inches(0.9)
 section.left_margin = section.right_margin = Inches(1)
@@ -66,9 +68,7 @@ SimpleDocTemplate(
 image = Image.new("RGB", (1200, 500), "white")
 draw = ImageDraw.Draw(image)
 draw.text((80, 80), "DOCUMENTO ESCANEADO FICTICIO", fill="black", font_size=38)
-draw.text(
-    (80, 160), "Esta pagina solo contiene una imagen.", fill="black", font_size=30
-)
+draw.text((80, 160), "Esta pagina solo contiene una imagen.", fill="black", font_size=30)
 draw.text(
     (80, 220),
     "El sistema debe pedir texto manual: OCR pendiente.",

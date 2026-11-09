@@ -78,7 +78,11 @@ async function api(path: string, options?: RequestInit) {
         ? undefined
         : { "Content-Type": "application/json" },
   });
-  const data = await response.json();
+  const data = await response.json().catch(() => {
+    throw new Error(
+      "El servidor no respondió correctamente. Intenta nuevamente en un momento.",
+    );
+  });
   if (!response.ok) {
     if (response.status === 401 && !path.startsWith("auth/"))
       window.dispatchEvent(new Event("session-expired"));

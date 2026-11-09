@@ -142,6 +142,8 @@ Los documentos de `samples/` sirven para demostrar los casos válidos e inválid
 
 GitHub Actions ejecuta las pruebas, el análisis estático y la compilación en cada push/PR. No despliega automáticamente ni almacena claves cloud en GitHub. Los Dockerfiles utilizan las versiones fijadas en `requirements.lock.txt` y `package-lock.json`, y ejecutan como usuario sin privilegios.
 
+La verificación integrada real del despliegue se puede repetir con `backend/.venv/Scripts/python.exe scripts/smoke-cloud.py`. Crea dos cuentas ficticias con contraseñas aleatorias solo en memoria y comprueba documentos, análisis Gemini, descarga e aislamiento de usuarios. Guarda evidencia sin credenciales en `.local/cloud-validation.json`. Consulta el resultado de esta entrega en [VALIDATION.md](docs/VALIDATION.md).
+
 ## Cloud y entrevista
 
 Consulta [el despliegue](docs/DEPLOY.md) y [el guion para la demo](docs/DEMO.md). No se garantiza costo cero para Cloud Run, Cloud Build, Artifact Registry, Firestore, Secret Manager o Storage: tienen condiciones de cobro propias. Mantener Gemini en un proyecto sin facturación permite usar el nivel gratuito disponible, sin activar automáticamente su modalidad de pago.
