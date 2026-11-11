@@ -7,7 +7,7 @@ Plataforma de demostración para una entrevista técnica. Permite registrarse, e
 Requisitos: Python 3.12 y Node.js 22 o superior. El modo local funciona sin cuentas cloud ni claves y se identifica en pantalla como **análisis por reglas**. Para ensayar el flujo con IA real, configura `AI_MODE=gemini` y tu clave gratuita en `backend/.env`.
 
 ```powershell
-cd 'C:\Users\Camilo Hernandez\Documents\Personal\ju'
+cd 'C:\Users\Juanes \Documents\Personal\ju'
 py -3.12 -m venv backend\.venv
 & .\backend\.venv\Scripts\python.exe -m pip install -r backend\requirements.lock.txt
 cd frontend
